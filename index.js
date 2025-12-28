@@ -11,7 +11,8 @@ console.log('Hola mundo v2 jsjaj')
 //1- para ejecutar nuestro backend debemos configurar un puerto. express() es una instancia de express
 const app = express();
 // crear una variable con express
-app.set('port', 4000);
+// node tiene para acceder a las variables de entorno .env con process.env.PORT
+app.set('port', process.env.PORT || 4000);
 // obtengo esa variable creada para el puerto y con listen lo que hace es escucharla
 app.listen(app.get('port'),()=>{
     console.log('Estoy en el puerto '+app.get('port'));
