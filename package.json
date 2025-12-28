@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "Julian Aballay",
   "license": "ISC",
-  "description": "Backend del proyecto Rolling Coffee"
+  "description": "Backend del proyecto Rolling Coffee",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
