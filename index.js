@@ -9,6 +9,8 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config'; //permite procesar variables dee entorno. Es una manera rapida de configurar el middleware
 import morgan from 'morgan';
+import {fileURLToPath} from 'url'
+import path from 'path';
 //1- para ejecutar nuestro backend debemos configurar un puerto. express() es una instancia de express
 const app = express();
 // crear una variable con express
@@ -33,9 +35,20 @@ app.use(express.json()); //permite interpretar datos en formato json
 app.use(express.urlencoded({extended: true})) //permite extraer los datos del body del request. {extended:true} es un objeto que extrae los datos
 // del body de la solicitud que llegue. Es un middleware de Express que permite leer datos enviados desde formularios HTML.
 //falta configurar el index.html
+const __filename = fileURLToPath(import.meta.url); //este objeto nos ayuda a obtener la ruta dee un archivo. Para ello importamos una libreria de node que se llama url
+const __dirname = path.dirname(__filename); //Devuelve la carpeta contenedora del archivo.
+// console.log(__filename);
+// console.log(path.join(__dirname, '/public'));  //el  path tiene metodos  para concatenar rutas
+app.use(express.static(path.join(__dirname, '/public'))); // la instancia de express utiliza como archivo statico  la ruta que pasamos por parametro que es el path concatenado
 
 //3- configurar las rutas
-
+//tiene que ver con los endpoint, es lo ultimo que se va a ejecutar deentro de nuestro backend
+// aca va las distintas solicitudes http
+app.get('/nuevo', (req, res)=>{
+    console.log('alguien solicito algo');
+    //falta configurar respuesta
+    res.send('Solicitud get');  
+})
 
 
 //el comando node --watch index.js complica el archivo index.js y lo reinicia si detecta cambios. Este se lo utiliza en desarrollo
