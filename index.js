@@ -11,6 +11,7 @@ import 'dotenv/config'; //permite procesar variables dee entorno. Es una manera 
 import morgan from 'morgan';
 import {fileURLToPath} from 'url'
 import path from 'path';
+import productosRouter from './src/routes/productos.routes.js';
 //1- para ejecutar nuestro backend debemos configurar un puerto. express() es una instancia de express
 const app = express();
 // crear una variable con express
@@ -44,12 +45,13 @@ app.use(express.static(path.join(__dirname, '/public'))); // la instancia de exp
 //3- configurar las rutas
 //tiene que ver con los endpoint, es lo ultimo que se va a ejecutar deentro de nuestro backend
 // aca va las distintas solicitudes http
-app.get('/nuevo', (req, res)=>{
-    console.log('alguien solicito algo');
-    //falta configurar respuesta
-    res.send('Solicitud get');  
-})
+// app.get('/nuevo', (req, res)=>{
+//     console.log('alguien solicito algo');
+//     //falta configurar respuesta
+//     res.send('Solicitud get');  
+// })
 
+app.use('/api', productosRouter);
 
 //el comando node --watch index.js complica el archivo index.js y lo reinicia si detecta cambios. Este se lo utiliza en desarrollo
 // mejor utilizar para esto la liberia nodemoon -> mas estable, configurable
@@ -57,3 +59,6 @@ app.get('/nuevo', (req, res)=>{
 // si no queremos esto e instalarlo de manera independiente cuando hagamos un nuevo proyecto hacerlo con el parametro --save-dev
 // esto se va instalar como una devDependencie
 
+//entonces en el paso 3 tengo que separar esas rutas
+// la parte de la ruta app.get('/nuevo') esta párte va a ir en la carpeta routes
+// la parte de la funcion (req,res)=> va a ir en la carpeta controllers
