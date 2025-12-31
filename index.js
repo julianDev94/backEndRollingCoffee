@@ -12,6 +12,7 @@ import morgan from 'morgan';
 import {fileURLToPath} from 'url'
 import path from 'path';
 import productosRouter from './src/routes/productos.routes.js';
+import './src/database/conexionDB.js'
 //1- para ejecutar nuestro backend debemos configurar un puerto. express() es una instancia de express
 const app = express();
 // crear una variable con express
@@ -22,7 +23,7 @@ app.listen(app.get('port'),()=>{
     console.log('Estoy en el puerto '+app.get('port'));
 });
 
-
+    
 //2- configurar middleware del proyecto
 // esto nos ayuda a entender las variables de entorno, que reciba conexiones remotas, que entienda el formato JSON.
 // estos son funciones que se ejecutan en el backend generalmente antes de llegar a las rutas.
