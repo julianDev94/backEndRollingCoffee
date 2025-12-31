@@ -1,0 +1,1 @@
+// nombre de la estructura debe ir en singular porque nos referimos a un solo producto
