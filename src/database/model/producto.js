@@ -1,7 +1,7 @@
 // nombre de la estructura debe ir en singular porque nos referimos a un solo producto. Aca definimos el schema
 // el modelo tambien representa a una coleccion de documentos
 // el schema es la representacion de la estructura de datos que voy a guardar en mongo db
-import mongoose, {mongo, Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 const productoSchema = new Schema({
     nombreProducto: {
