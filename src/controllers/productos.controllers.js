@@ -6,7 +6,7 @@ export const listarProductos = async (req, res) => {
   //dentro del try no se puede responder 2 veces
   try {
     //pedir a la bd la lista de la coleccion de documentos de productos
-    const productos = await Producto.find({});
+    const productos = await Producto.find();
     res.status(200).json(productos);
   } catch (error) {
     console.log(error);
@@ -49,23 +49,58 @@ export const crearProducto = async (req, res) => {
   }
 };
 
-export const editarProducto = async (req, res) =>{
-try {
-  //extraer el id y buscar el producto
-  const buscarProducto = await Producto.findById(req.params.id);
-  //si no encuentro el id responder con un mensaje de error
-  if(!buscarProducto){
-    return res.status(404).json({mensaje: 'No se pudo editar el producto, el id es incorrecto'});
-  }
+export const editarProducto = async (req, res) => {
+  try {
+    //extraer el id y buscar el producto
+    const buscarProducto = await Producto.findById(req.params.id);
+    //si no encuentro el id responder con un mensaje de error
+    if (!buscarProducto) {
+      return res
+        .status(404)
+        .json({
+          mensaje: "No se pudo editar el producto, el id es incorrecto",
+        });
+    }
 
-  //pedir a la BD modificar el producto que tiene tal id con los datos de req.body
-  //put o patch devuelven el objeto modificado en caso que lo quiera obtener y hacer alguna opcion.
-  await Producto.findByIdAndUpdate(req.params.id, req.body);
-  //contestar con un mensaje de ok
-  
-  res.status(200).json({mensaje: 'El producto fue modificado exitosamente'});
-} catch (error) {
-  console.log(error);
-  res.status(500).json({mensaje: 'Ocurrio un error al intentar editar el producto'})
-}
-}
+    //pedir a la BD modificar el producto que tiene tal id con los datos de req.body
+    //put o patch devuelven el objeto modificado en caso que lo quiera obtener y hacer alguna opcion.
+    await Producto.findByIdAndUpdate(req.params.id, req.body);
+    //contestar con un mensaje de ok
+
+    res
+      .status(200)
+      .json({ mensaje: "El producto fue modificado exitosamente" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error al intentar editar el producto" });
+  }
+};
+
+export const borrarProducto = async () => {
+  try {
+    //extraer el id y buscar el producto
+    const buscarProducto = await Producto.findById(req.params.id);
+    //si no encuentro el id responder con un mensaje de error
+    if (!buscarProducto) {
+      return res
+        .status(404)
+        .json({
+          mensaje: "No se pudo borrar el producto, el id es incorrecto",
+        });
+    }
+
+    //pedir a la BD modificar el producto que tiene tal id con los datos de req.body
+    //put o patch devuelven el objeto modificado en caso que lo quiera obtener y hacer alguna opcion.
+    await Producto.findByIdAndDelete(req.params.id);
+    //contestar con un mensaje de ok
+
+    res.status(200).json({ mensaje: "El producto fue eliminado exitosamente" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error al intentar borrar el producto" });
+  }
+};
