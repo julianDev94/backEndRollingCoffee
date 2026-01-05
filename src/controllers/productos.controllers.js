@@ -78,7 +78,7 @@ export const editarProducto = async (req, res) => {
   }
 };
 
-export const borrarProducto = async () => {
+export const borrarProducto = async (req, res) => {
   try {
     //extraer el id y buscar el producto
     const buscarProducto = await Producto.findById(req.params.id);
