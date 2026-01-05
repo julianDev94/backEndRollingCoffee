@@ -12,3 +12,6 @@ un servidor y realizarle las peticiones acordes a lo que se necesita de cada rec
 - CORS
 - DOTENV
 
+## Autor
+
+Julian Aballay 💻😎
