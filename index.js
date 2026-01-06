@@ -65,3 +65,4 @@ app.use('/api', usuariosRouter);
 //entonces en el paso 3 tengo que separar esas rutas
 // la parte de la ruta app.get('/nuevo') esta párte va a ir en la carpeta routes
 // la parte de la funcion (req,res)=> va a ir en la carpeta controllers
+// Express-validator es un middleware basado en express que me ayuda a trabajar todas las validaciones

@@ -1,4 +1,4 @@
-import Usuario from "../database/model/usuario";
+import Usuario from "../database/model/usuario.js";
 
 
 export const crearUsuario = async (req, res) =>{

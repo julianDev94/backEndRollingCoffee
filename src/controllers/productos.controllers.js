@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import Producto from "../database/model/producto.js";
 
 // console.log("Desde listar producto");
@@ -34,7 +35,10 @@ export const crearProducto = async (req, res) => {
     //1- verificar datos del body
     console.log(req.body);
     //2- validar los datos
-
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({errores: errors.array()})
+    }
     //3- pedir a la BD crear el producto
     const productoNuevo = new Producto(req.body);
     await productoNuevo.save();
