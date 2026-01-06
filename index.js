@@ -12,6 +12,7 @@ import morgan from 'morgan';
 import {fileURLToPath} from 'url'
 import path from 'path';
 import productosRouter from './src/routes/productos.routes.js';
+import usuariosRouter from './src/routes/usuarios.routes.js';
 import './src/database/conexionDB.js'
 //1- para ejecutar nuestro backend debemos configurar un puerto. express() es una instancia de express
 const app = express();
@@ -53,6 +54,7 @@ app.use(express.static(path.join(__dirname, '/public'))); // la instancia de exp
 // })
 
 app.use('/api', productosRouter);
+app.use('/api', usuariosRouter);
 
 //el comando node --watch index.js complica el archivo index.js y lo reinicia si detecta cambios. Este se lo utiliza en desarrollo
 // mejor utilizar para esto la liberia nodemoon -> mas estable, configurable
@@ -63,3 +65,4 @@ app.use('/api', productosRouter);
 //entonces en el paso 3 tengo que separar esas rutas
 // la parte de la ruta app.get('/nuevo') esta párte va a ir en la carpeta routes
 // la parte de la funcion (req,res)=> va a ir en la carpeta controllers
+// Express-validator es un middleware basado en express que me ayuda a trabajar todas las validaciones antes que llegue a los controladores
