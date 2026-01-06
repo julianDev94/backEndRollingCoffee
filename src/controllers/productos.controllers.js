@@ -35,10 +35,11 @@ export const crearProducto = async (req, res) => {
     //1- verificar datos del body
     console.log(req.body);
     //2- validar los datos
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-      return res.status(400).json({errores: errors.array()})
-    }
+    // const errors = validationResult(req);
+    // if(!errors.isEmpty()){
+    //   return res.status(400).json({errores: errors.array()})
+    // }
+    // migro el codigo del resultado de validar los datos con el check hacia helpers en otro archivo
     //3- pedir a la BD crear el producto
     const productoNuevo = new Producto(req.body);
     await productoNuevo.save();
